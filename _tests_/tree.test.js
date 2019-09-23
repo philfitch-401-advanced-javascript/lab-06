@@ -49,4 +49,23 @@ describe('Tree model', () => {
 
     expect(tree.appearance.alternateBranching).toBe(true);
   })
+
+  it('enforces max 10 leafLobes', () => {
+    const data = {
+      ['appearance.leafLobes']: 11
+    }
+    const tree = new Tree(data);
+    const { errors } = tree.validateSync();
+    expect(errors['appearance.leafLobes'].kind).toBe('max');
+  })
+
+  it('enforces min 0 leafLobes', () => {
+    const data = {
+      ['appearance.leafLobes']: -1
+    }
+    const tree = new Tree(data);
+    const { errors } = tree.validateSync();
+    expect(errors['appearance.leafLobes'].kind).toBe('min');
+  })
+
 })
