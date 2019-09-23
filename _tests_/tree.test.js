@@ -7,7 +7,7 @@ describe('Tree model', () => {
     const data = {
       name: 'cedar',
       appearance: {
-        leaf: 'needle',
+        leafType: 'needle',
         leafLobes: 0,
         alternateBranching: true
       },
@@ -17,5 +17,20 @@ describe('Tree model', () => {
     const tree = new Tree(data);
     const errors = tree.validateSync();
     expect(errors).toBeUndefined();
+
+    const json = tree.toJSON();
+
+    expect(json).toEqual({
+      ...data,
+      _id: expect.any(Object),
+    })
+  })
+
+  it('validates required properties', () => {
+    const data = {};
+    const tree = new Tree(data);
+    const { errors } = tree.validateSync();
+    expect(errors.name.kind).toBe('required');
+    expect(errors['appearance.leafType'].kind).toBe('required');
   })
 })
