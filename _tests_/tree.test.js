@@ -33,4 +33,20 @@ describe('Tree model', () => {
     expect(errors.name.kind).toBe('required');
     expect(errors['appearance.leafType'].kind).toBe('required');
   })
+
+  it('populates default properties', () => {
+    const data = {
+      name: 'cedar',
+      appearance: {
+        leafType: 'needle',
+        leafLobes: 0,
+      },
+      lifeCycle: ['coniferous']
+    }
+    const tree = new Tree(data);
+    const err = tree.validateSync();
+    expect(err).toBeUndefined();
+
+    expect(tree.appearance.alternateBranching).toBe(true);
+  })
 })
