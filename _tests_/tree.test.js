@@ -68,4 +68,13 @@ describe('Tree model', () => {
     expect(errors['appearance.leafLobes'].kind).toBe('min');
   })
 
+  it('enforces enum on lifeCycle', () => {
+    const data = {
+      lifeCycle: ['biennial']
+    }
+    const tree = new Tree(data);
+    const { errors } = tree.validateSync();
+    expect(errors['lifeCycle.0'].kind).toBe('enum');
+  })
+
 })
