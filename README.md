@@ -5,7 +5,7 @@
 ### Author: Phil Fitch
 
 ### Links and Resources
-* [submission PR](http://xyz.com)
+* [submission PR](https://github.com/philfitch-401-advanced-javascript/lab-06/pull/1)
 * [travis](https://travis-ci.com/philfitch-401-advanced-javascript/lab-06)
 * [back-end](http://xyz.com) (when applicable)
 * [front-end](http://xyz.com) (when applicable)
@@ -17,8 +17,8 @@
 
 ### Setup
 #### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
+* `PORT` -  3000
+* `MONGODB_URI` - mongodb://localhost:27017/db-name
 
 **or, include an `.env.example`**
 
