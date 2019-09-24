@@ -12,7 +12,7 @@ describe('Tree model', () => {
         alternateBranching: true
       },
       lifeCycle: ['coniferous']
-    }
+    };
 
     const tree = new Tree(data);
     const errors = tree.validateSync();
@@ -23,8 +23,8 @@ describe('Tree model', () => {
     expect(json).toEqual({
       ...data,
       _id: expect.any(Object),
-    })
-  })
+    });
+  });
 
   it('validates required properties', () => {
     const data = {};
@@ -32,7 +32,7 @@ describe('Tree model', () => {
     const { errors } = tree.validateSync();
     expect(errors.name.kind).toBe('required');
     expect(errors['appearance.leafType'].kind).toBe('required');
-  })
+  });
 
   it('populates default properties', () => {
     const data = {
@@ -42,39 +42,39 @@ describe('Tree model', () => {
         leafLobes: 0,
       },
       lifeCycle: ['coniferous']
-    }
+    };
     const tree = new Tree(data);
     const err = tree.validateSync();
     expect(err).toBeUndefined();
 
     expect(tree.appearance.alternateBranching).toBe(true);
-  })
+  });
 
   it('enforces max 10 leafLobes', () => {
     const data = {
       ['appearance.leafLobes']: 11
-    }
+    };
     const tree = new Tree(data);
     const { errors } = tree.validateSync();
     expect(errors['appearance.leafLobes'].kind).toBe('max');
-  })
+  });
 
   it('enforces min 0 leafLobes', () => {
     const data = {
       ['appearance.leafLobes']: -1
-    }
+    };
     const tree = new Tree(data);
     const { errors } = tree.validateSync();
     expect(errors['appearance.leafLobes'].kind).toBe('min');
-  })
+  });
 
   it('enforces enum on lifeCycle', () => {
     const data = {
       lifeCycle: ['biennial']
-    }
+    };
     const tree = new Tree(data);
     const { errors } = tree.validateSync();
     expect(errors['lifeCycle.0'].kind).toBe('enum');
-  })
+  });
 
-})
+});

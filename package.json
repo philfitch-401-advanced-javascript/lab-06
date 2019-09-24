@@ -21,7 +21,8 @@
   "homepage": "https://github.com/philfitch-401-advanced-javascript/lab-06#readme",
   "dependencies": {
     "eslint": "^6.4.0",
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "mongoose": "^5.7.1"
   },
   "directories": {
     "lib": "lib"
